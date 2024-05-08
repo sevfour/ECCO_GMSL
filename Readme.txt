@@ -1,5 +1,5 @@
 Steps:
-
+test
 - 01-ECCO_V4r4_SSH_mean: Compute mean SSH 1992-2017 from ECCO
 
 - 02-Create_Alongtrack_sample_file: Create nc sample files (1 full cycle, all cycles including missing data, all cycles with no missing data and orbit error param, all cycles with missing data and orbit error param). Output: Data/ and Data/errors/
