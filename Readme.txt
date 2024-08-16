@@ -18,6 +18,6 @@ Steps:
 
 - Create grids from these along track data by running simple_gridder program after changing config file (conf.yaml): python simple_gridder.py. Output: gridding_output_...
 
-- 08/09-GMSL: Create netCDF files with the GMSL time series for along track data from Beckley and ECCO synthetic with no error, random error, missing data, orbit error and 3 errors, as well as GMSL time series computed from synthetic grids and daily ECCO gridded data. Output: GMSL
+- 08/09/10-GMSL: Create netCDF files with the GMSL time series for along track data from Beckley and ECCO synthetic with no error, random error, missing data, orbit error and 3 errors, as well as GMSL time series computed from synthetic grids and daily ECCO gridded data. Output: GMSL
 
-- 10-GMSL_plots: GMSL plots for different methods global average
+- 11-GMSL_plots: GMSL plots for different methods global average
