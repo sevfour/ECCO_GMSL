@@ -16,8 +16,8 @@ Steps:
 
 - 07-ECCO_V4r4_SSH_to_alongtrack_allyears_3errors: Create 1 netCDF file per day (ECCO_V4r4_alongtrack_SSH_<date>_3errors.nc) of along track SSH with missing data, random noise and orbit error, simulated on ECCO. Output: ECCO_V4r4_alongtrack_output_3errors, with other orbit error values too
 
-- Create grids from these along track data by running simple_gridder program after changing config file (conf.yaml): python simple_gridder.py. Output: gridding_output_...
+- 08 or simple_gridder program from Kevin: Create grids from these along track data. If running simple_gridder program, change config file (conf.yaml): python simple_gridder.py. Output: gridding_output_...
 
-- 08/09/10-GMSL: Create netCDF files with the GMSL time series for along track data from Beckley and ECCO synthetic with no error, random error, missing data, orbit error and 3 errors, as well as GMSL time series computed from synthetic grids and daily ECCO gridded data. Output: GMSL
+- 09/10/11-GMSL: Create netCDF files with the GMSL time series for along track data from Beckley and ECCO synthetic with no error, random error, missing data, orbit error and 3 errors, as well as GMSL time series computed from synthetic grids and daily ECCO gridded data. Output: GMSL
 
-- 11-GMSL_plots: GMSL plots for different methods global average
+- 12-GMSL_plots: GMSL plots for different methods global average
