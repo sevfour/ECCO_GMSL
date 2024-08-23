@@ -66,8 +66,7 @@ file.close()
 
 ####################################### GRIDS FROM BECKLEY DAILY FILE ALONGTRACK ###################################################
 
-# time_fiction=range(myDate.date2jj(1992,9,23),myDate.date2jj(2017,12,31)+11)
-time_fiction=range(myDate.date2jj(1995,11,27),myDate.date2jj(2017,12,31)+11)
+time_fiction=range(myDate.date2jj(1992,9,23),myDate.date2jj(2017,12,31)+11)
 
 # loop over each 10-day cycle
 for j in np.arange(0,len(time_fiction)-10,10):
@@ -79,9 +78,9 @@ for j in np.arange(0,len(time_fiction)-10,10):
     lon=[]
     ssh=[]
     for i in range(0,10):
-        [year,month,day]=myDate.jj2date(time_fiction[j+i])
-        if len(glob.glob(os.path.join(at_file_dir_beckley, 'MERGED_ALT-alt_ssh'+str(year)+str(month).zfill(2)+str(day).zfill(2)+'.h5')))>0:
-            file=glob.glob(os.path.join(at_file_dir_beckley, 'MERGED_ALT-alt_ssh'+str(year)+str(month).zfill(2)+str(day).zfill(2)+'.h5'))[0]
+        [yy,mm,dd]=myDate.jj2date(time_fiction[j+i])
+        if len(glob.glob(os.path.join(at_file_dir_beckley, 'MERGED_ALT-alt_ssh'+str(yy)+str(mm).zfill(2)+str(dd).zfill(2)+'.h5')))>0:
+            file=glob.glob(os.path.join(at_file_dir_beckley, 'MERGED_ALT-alt_ssh'+str(yy)+str(mm).zfill(2)+str(dd).zfill(2)+'.h5'))[0]
             nf=nc.Dataset(file,'r')
             nch = nf.groups.get('data')
             xds = xr.open_dataset(xr.backends.NetCDF4DataStore(nch))
@@ -92,7 +91,7 @@ for j in np.arange(0,len(time_fiction)-10,10):
             ssh=np.concatenate((ssh,np.array(xds['ssh_smoothed'][:])))  
             nf.close()
         else:
-            print('no file on: '+str(year)+str(month).zfill(2)+str(day).zfill(2))
+            print('no file on: '+str(yy)+str(mm).zfill(2)+str(dd).zfill(2))
 
     if len(ssh)>0:
         # change longitudes to +/- 180
@@ -122,7 +121,7 @@ for j in np.arange(0,len(time_fiction)-10,10):
     
         ds = xr.Dataset({'SSHA':(('latitude','longitude'), tmpmap),
                         'counts':(('latitude','longitude'), counts)},
-                    coords={'latitude': latgrid,'longitude':longrid,'time':np.datetime64(str(year)+'-'+str(month).zfill(2)+'-'+str(day).zfill(2))})
+                    coords={'latitude': latgrid,'longitude':longrid,'time':datetime(year, month, day)})
         ds['time'].attrs['long_name'] = 'center of 10-day cycle'
         
         ds['SSHA'].attrs['long_name'] = 'sea surface height anomaly'

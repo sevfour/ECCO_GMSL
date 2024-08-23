@@ -12,18 +12,18 @@ import xarray as xr
 import myDate
 
 # input directory name for alongtrack
-# at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_nosicapplied/')
+at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_nosicapplied/')
 # at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_randomnoise_nosicapplied/')
 # at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_missingdata_nosicapplied/')
 # at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_orbiterror_2cm_nosicapplied/')
-at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_3errors_2cm_nosicapplied/')
+# at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_3errors_2cm_nosicapplied/')
 
 # output directory name for grids
-# grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_nosicapplied/')
+grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_nosicapplied/')
 # grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_randomnoise_nosicapplied/')
 # grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_missingdata_nosicapplied/')
 # grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_orbiterror_2cm_nosicapplied/')
-grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_3errors_2cm_nosicapplied/')
+# grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_3errors_2cm_nosicapplied/')
 
 # other directories
 main_dir = Path('/home/jpluser/ECCO_GMSL/')
@@ -74,8 +74,7 @@ file.close()
 
 ####################################### GRIDS FROM SYNTHETIC ECCO ALONGTRACK ################################################### 
 
-# time_fiction=range(myDate.date2jj(1992,9,23),myDate.date2jj(2017,12,31)+11)
-time_fiction=range(myDate.date2jj(1997,7,9),myDate.date2jj(2017,12,31)+11)
+time_fiction=range(myDate.date2jj(1992,9,23),myDate.date2jj(2017,12,31)+11)
 
 # loop over each 10-day cycle
 for j in np.arange(0,len(time_fiction)-10,10):
@@ -87,15 +86,15 @@ for j in np.arange(0,len(time_fiction)-10,10):
     lon=[]
     ssh=[]
     for i in range(0,10):
-        [year,month,day]=myDate.jj2date(time_fiction[j+i])
-        if len(glob.glob(os.path.join(at_file_dir, 'ECCO_V4r4_alongtrack_SSH_'+str(year)+'-'+str(month).zfill(2)+'-'+str(day).zfill(2)+'*.nc')))>0:
-            file=glob.glob(os.path.join(at_file_dir, 'ECCO_V4r4_alongtrack_SSH_'+str(year)+'-'+str(month).zfill(2)+'-'+str(day).zfill(2)+'*.nc'))[0]
+        [yy,mm,dd]=myDate.jj2date(time_fiction[j+i])
+        if len(glob.glob(os.path.join(at_file_dir, 'ECCO_V4r4_alongtrack_SSH_'+str(yy)+'-'+str(mm).zfill(2)+'-'+str(dd).zfill(2)+'*.nc')))>0:
+            file=glob.glob(os.path.join(at_file_dir, 'ECCO_V4r4_alongtrack_SSH_'+str(yy)+'-'+str(mm).zfill(2)+'-'+str(dd).zfill(2)+'*.nc'))[0]
             xds = xr.open_dataset(file)     
             lon=np.concatenate((lon,np.array(xds['lon'])))
             lat=np.concatenate((lat,np.array(xds['lat'])))
             ssh=np.concatenate((ssh,np.array(xds['SSH_at_xy'])))
         else:
-            print('no file on: '+str(year)+str(month).zfill(2)+str(day).zfill(2))
+            print('no file on: '+str(yy)+str(mm).zfill(2)+str(dd).zfill(2))
     
     # change longitudes to +/- 180
     ii=np.where(lon>180)
@@ -124,7 +123,7 @@ for j in np.arange(0,len(time_fiction)-10,10):
 
     ds = xr.Dataset({'SSHA':(('latitude','longitude'), tmpmap),
                     'counts':(('latitude','longitude'), counts)},
-                coords={'latitude': latgrid,'longitude':longrid,'time':np.datetime64(str(year)+'-'+str(month).zfill(2)+'-'+str(day).zfill(2))})
+                coords={'latitude': latgrid,'longitude':longrid,'time':datetime(year, month, day)})
     ds['time'].attrs['long_name'] = 'center of 10-day cycle'
     
     ds['SSHA'].attrs['long_name'] = 'sea surface height anomaly'
