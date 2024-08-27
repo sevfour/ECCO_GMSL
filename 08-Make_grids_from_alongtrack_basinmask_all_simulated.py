@@ -12,15 +12,15 @@ import xarray as xr
 import myDate
 
 # input directory name for alongtrack
-at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_nosicapplied/')
-# at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_randomnoise_nosicapplied/')
+# at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_nosicapplied/')
+at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_randomnoise_nosicapplied/')
 # at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_missingdata_nosicapplied/')
 # at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_orbiterror_2cm_nosicapplied/')
 # at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_3errors_2cm_nosicapplied/')
 
 # output directory name for grids
-grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_nosicapplied/')
-# grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_randomnoise_nosicapplied/')
+# grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_nosicapplied/')
+grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_randomnoise_nosicapplied/')
 # grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_missingdata_nosicapplied/')
 # grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_orbiterror_2cm_nosicapplied/')
 # grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_3errors_2cm_nosicapplied/')
