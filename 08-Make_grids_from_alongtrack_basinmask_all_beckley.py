@@ -79,17 +79,18 @@ for j in np.arange(0,len(time_fiction)-10,10):
     ssh=[]
     for i in range(0,10):
         [yy,mm,dd]=myDate.jj2date(time_fiction[j+i])
-        if len(glob.glob(os.path.join(at_file_dir_beckley, 'MERGED_ALT-alt_ssh'+str(yy)+str(mm).zfill(2)+str(dd).zfill(2)+'.h5')))>0:
-            file=glob.glob(os.path.join(at_file_dir_beckley, 'MERGED_ALT-alt_ssh'+str(yy)+str(mm).zfill(2)+str(dd).zfill(2)+'.h5'))[0]
-            nf=nc.Dataset(file,'r')
-            nch = nf.groups.get('data')
-            xds = xr.open_dataset(xr.backends.NetCDF4DataStore(nch))
+        if len(glob.glob(os.path.join(at_file_dir_beckley, 'NASA-SSH_alt_ref_at_v1_'+str(yy)+str(mm).zfill(2)+str(dd).zfill(2)+'.nc')))>0:
+            file=glob.glob(os.path.join(at_file_dir_beckley, 'NASA-SSH_alt_ref_at_v1_'+str(yy)+str(mm).zfill(2)+str(dd).zfill(2)+'.nc'))[0]
+            # nf=nc.Dataset(file,'r') #v51
+            # nch = nf.groups.get('data')
+            # xds = xr.open_dataset(xr.backends.NetCDF4DataStore(nch))
+            xds = xr.open_dataset(file)
                             
             # make "running" arrays, keep several days of data loaded at once
-            lon=np.concatenate((lon,np.array(xds['lons'][:])))
-            lat=np.concatenate((lat,np.array(xds['lats'][:])))
+            lon=np.concatenate((lon,np.array(xds['longitude'][:])))
+            lat=np.concatenate((lat,np.array(xds['latitude'][:])))
             ssh=np.concatenate((ssh,np.array(xds['ssh_smoothed'][:])))  
-            nf.close()
+            # nf.close() #v51
         else:
             print('no file on: '+str(yy)+str(mm).zfill(2)+str(dd).zfill(2))
 
