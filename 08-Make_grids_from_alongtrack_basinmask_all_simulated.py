@@ -13,17 +13,17 @@ import myDate
 
 # input directory name for alongtrack
 # at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_nosicapplied/')
-at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_randomnoise_nosicapplied/')
+# at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_randomnoise_nosicapplied/')
 # at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_missingdata_nosicapplied/')
 # at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_orbiterror_2cm_nosicapplied/')
-# at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_3errors_2cm_nosicapplied/')
+at_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/ECCO_V4r4_alongtrack_output_3errors_2cm_nosicapplied/')
 
 # output directory name for grids
 # grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_nosicapplied/')
-grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_randomnoise_nosicapplied/')
+# grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_randomnoise_nosicapplied/')
 # grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_missingdata_nosicapplied/')
 # grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_orbiterror_2cm_nosicapplied/')
-# grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_3errors_2cm_nosicapplied/')
+grids_file_dir = Path('/home/jpluser/ECCO_GMSL/Data/gridding_output_3errors_2cm_nosicapplied/')
 
 # other directories
 main_dir = Path('/home/jpluser/ECCO_GMSL/')
@@ -74,7 +74,7 @@ file.close()
 
 ####################################### GRIDS FROM SYNTHETIC ECCO ALONGTRACK ################################################### 
 
-time_fiction=range(myDate.date2jj(1992,9,23),myDate.date2jj(2017,12,31)+11)
+time_fiction=range(myDate.date2jj(1992,9,16),myDate.date2jj(2017,12,31)+11)
 
 # loop over each 10-day cycle
 for j in np.arange(0,len(time_fiction)-10,10):
